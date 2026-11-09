@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Optifly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">OPTIFLY</a>
+    <p class="tagline">Flight price optimization you can trust</p>
+  </header>
+
+  <main class="search-page">
+    <form id="search-form" class="search-card" novalidate>
+      <div class="search-grid">
+        <!-- depart/swap/arrive/travel dates -->
+        <div class="field field-depart">
+          <label for="from">Depart</label>
+          <input id="from" name="from" type="text" list="airport-list" placeholder="e.g., Los Angeles"
+                 autocomplete="off" maxlength="40" required />
+          <small class="hint" id="from-hint"></small>
+        </div>
+
+        <div class="swap-wrap">
+          <button type="button" id="swap-btn" class="swap-btn" aria-label="Swap departure and arrival">
+            <svg viewBox="0 0 48 32" aria-hidden="true">
+              <path d="M2 9h42M36 2l8 7-8 7" />
+              <path d="M46 23H4M12 16l-8 7 8 7" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="field field-arrive">
+          <label for="to">Arrive</label>
+          <input id="to" name="to" type="text" list="airport-list" placeholder="e.g., San Francisco"
+                 autocomplete="off" maxlength="40" required />
+          <small class="hint" id="to-hint"></small>
+        </div>
+
+        <fieldset class="field field-dates">
+          <legend>Travel Dates</legend>
+          <div class="pair">
+            <input id="depart-date" name="depart" type="date" aria-label="Departure date" required />
+            <input id="return-date" name="return" type="date" aria-label="Return date" required />
+          </div>
+          <small class="hint" id="dates-hint"></small>
+        </fieldset>
+
+        <!-- budget/luggage -->
+        <div class="field field-budget">
+          <label for="budget">Max Budget ($)</label>
+          <div class="money-input">
+            <span aria-hidden="true">$</span>
+            <input id="budget" name="budget" type="number" inputmode="numeric" min="1" step="1"
+                   placeholder="1000" required />
+          </div>
+          <small class="hint" id="budget-hint"></small>
+        </div>
+
+        <fieldset class="field field-luggage">
+          <legend>Luggage Types</legend>
+          <div class="pair">
+            <select id="carry-on" name="carry_on" aria-label="Number of carry-on bags" required>
+              <option value="" disabled selected>Carry-on #</option>
+              <option value="0">0 Carry-ons</option>
+              <option value="1">1 Carry-on</option>
+              <option value="2">2 Carry-ons</option>
+            </select>
+            <select id="checked" name="checked" aria-label="Number of checked bags" required>
+              <option value="" disabled selected>Checked bag #</option>
+              <option value="0">0 Checked bags</option>
+              <option value="1">1 Checked bag</option>
+              <option value="2">2 Checked bags</option>
+              <option value="3">3 Checked bags</option>
+            </select>
+          </div>
+          <small class="hint" id="luggage-hint"></small>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="search-btn">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7" /><path d="M16 16l5.5 5.5" /></svg>
+        Search Flights
+      </button>
+    </form>
+
+    <datalist id="airport-list"></datalist>
+  </main>
+
+  <script src="js/common.js"></script>
+  <script src="js/search.js"></script>
+</body>
+</html>

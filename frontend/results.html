@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- phone formatting, not sure if we need this LOL, but good for formatting -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Optifly Results</title>
+  <!-- loads fonts faster -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Marcellus&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">OPTIFLY</a>
+    <p class="tagline">Flight price optimization you can trust</p>
+  </header>
+
+  <main class="results-page">
+    <aside class="details-card" id="details">
+      <h2>Your Travel Details:</h2>
+      <dl>
+        <dt>Depart</dt>          <dd id="d-from">—</dd>
+        <dt>Arrive</dt>          <dd id="d-to">—</dd>
+        <dt>Travel Dates</dt>    <dd id="d-dates">—</dd>
+        <dt>Budget</dt>          <dd id="d-budget">—</dd>
+        <dt># of Luggage</dt>    <dd id="d-luggage">—</dd>
+      </dl>
+      <a id="edit-link" class="edit-link" href="index.html">Edit search</a>
+    </aside>
+
+    <section class="results">
+      <p id="sample-banner" class="sample-banner" hidden>
+        these are just samples! will update to real results once backend is connected
+      </p>
+
+      <section class="panel panel-cheapest" aria-labelledby="h-cheapest">
+        <h2 id="h-cheapest">Cheapest Flight</h2>
+        <div class="panel-body" id="cheapest"><p class="status">Searching flights…</p></div>
+      </section>
+
+      <section class="panel panel-time" aria-labelledby="h-time">
+        <h2 id="h-time">Time Optimized</h2>
+        <div class="panel-body" id="time-optimized"><p class="status">Searching flights…</p></div>
+      </section>
+
+      <section class="panel panel-other" aria-labelledby="h-other">
+        <h2 id="h-other">Other Flights</h2>
+        <div class="panel-body" id="others"><p class="status">Searching flights…</p></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/common.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/results.js"></script>
+</body>
+</html>

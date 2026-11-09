@@ -1,0 +1,411 @@
+/* library of all colors, radii, and fonts used throughout frontend. 
+feel free to add other colors/styles, as long as it is added and lebeled properly. */
+
+:root {
+  --header-bg: #b8ccdd;
+  --card-tan: #c2ad96;
+  --label-brown: #54473a;
+  --btn-brown: #4f4334;
+  --btn-brown-hover: #3e3428;
+  --sidebar: #8395a8;
+  --panel-cheapest: #99acbd;
+  --panel-time: #aab8c5;
+  --panel-other: #adb3ba;
+  --text: #1c1c1e;
+  --muted: #6b6b6b;
+  --error: #8a1c1c;
+  --ok: #1f5f3a;
+
+  --radius-card: 36px;
+  --radius-panel: 16px;
+  --radius-input: 10px;
+  --input-h: 56px;
+
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-logo: "Marcellus", "Times New Roman", serif;
+}
+
+/* padding formatting */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body { margin: 0; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* header format */
+.site-header {
+  background: var(--header-bg);
+  text-align: center;
+  padding: 28px 16px 26px;
+}
+.logo {
+  font-family: var(--font-logo);
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  letter-spacing: 0.08em;
+  color: #111;
+  text-decoration: none;
+  line-height: 1;
+}
+.tagline {
+  margin: 14px 0 0;
+  font-size: 1rem;
+}
+
+/* search formatting */
+.search-page {
+  padding: 96px 24px 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-card {
+  width: 100%;
+  max-width: 1000px;
+  background: var(--card-tan);
+  border-radius: var(--radius-card);
+  padding: 52px 56px 64px;
+}
+
+/* search area formatting (gridded to align entry boxes and labels) */
+.search-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr) minmax(0, 1.55fr);
+  column-gap: 16px;
+  row-gap: 22px;
+  align-items: start;
+}
+.field-depart  { grid-column: 1; }
+.swap-wrap     { grid-column: 2; }
+.field-arrive  { grid-column: 3; }
+.field-dates   { grid-column: 4; }
+.field-budget  { grid-column: 1 / 3; }
+.field-luggage { grid-column: 3 / 5; }
+.field-luggage .pair { max-width: 360px; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+fieldset.field { border: 0; margin: 0; padding: 0; }
+
+.field label,
+.field legend {
+  color: var(--label-brown);
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding: 0 4px;
+  margin-bottom: 10px;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+}
+.field-luggage .pair { gap: 12px; }
+
+input,
+select {
+  font: inherit;
+  font-size: 1rem;
+  color: var(--text);
+  height: var(--input-h);
+  width: 100%;
+  padding: 0 16px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-input);
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+input::placeholder { color: #6e6e6e; }
+input:focus,
+select:focus {
+  border-color: var(--btn-brown);
+  box-shadow: 0 0 0 3px rgba(79, 67, 52, 0.18);
+}
+input[aria-invalid="true"],
+select[aria-invalid="true"],
+.money-input:has(input[aria-invalid="true"]) {
+  border-color: var(--error);
+}
+
+#from, #to { text-transform: uppercase; font-size: 1.15rem; }
+/* custom arrow dropdown thing */
+#from::-webkit-calendar-picker-indicator,
+#to::-webkit-calendar-picker-indicator { display: none !important; }
+#from::placeholder, #to::placeholder { text-transform: none; font-size: 1rem; }
+
+/* default entry labels */
+input[type="date"]:invalid,
+select:invalid { color: #6e6e6e; }
+select {
+  appearance: none;
+  cursor: pointer;
+  font-size: 0.92rem;
+  padding: 0 14px;
+}
+
+/* $ prefix inside budget entry area */
+.money-input {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: var(--radius-input);
+  border: 2px solid transparent;
+  padding-left: 16px;
+}
+.money-input:focus-within {
+  border-color: var(--btn-brown);
+  box-shadow: 0 0 0 3px rgba(79, 67, 52, 0.18);
+}
+.money-input span { color: var(--text); }
+.money-input input {
+  border: 0;
+  box-shadow: none !important;
+  padding-left: 4px;
+  height: calc(var(--input-h) - 4px);
+}
+/* hide number spinners */
+.money-input input::-webkit-outer-spin-button,
+.money-input input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.money-input input[type="number"] { -moz-appearance: textfield; }
+
+/* city name */
+.hint {
+  min-height: 1.1em;
+  margin-top: 5px;
+  padding: 0 8px;
+  font-size: 0.75rem;
+  color: var(--label-brown);
+}
+/* error if needed */
+.hint.error { color: var(--error); font-weight: 500; }
+
+/* swap arrows */
+.swap-wrap {
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: calc(0.95rem * 1.2 + 10px);
+}
+.swap-btn {
+  width: 56px;
+  height: var(--input-h);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 10px;
+  color: var(--label-brown);
+  transition: background 0.15s, transform 0.25s;
+}
+.swap-btn:hover { background: rgba(255, 255, 255, 0.25); }
+.swap-btn:active { transform: scaleX(-1); }
+.swap-btn:focus-visible { outline: 2px solid var(--btn-brown); }
+.swap-btn svg {
+  width: 44px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* search button */
+.search-btn {
+  margin-top: 34px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 26px 0 22px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--btn-brown);
+  color: #fff;
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+.search-btn:hover { background: var(--btn-brown-hover); }
+.search-btn:active { transform: translateY(1px); }
+.search-btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+.search-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+}
+
+/* results formatting */
+.results-page {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 26px;
+  padding: 38px 32px 48px;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.details-card {
+  background: var(--sidebar);
+  color: #fff;
+  border-radius: 22px;
+  padding: 20px 20px 28px;
+  position: sticky;
+  top: 20px;
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+}
+.details-card h2 {
+  margin: 0 0 24px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.details-card dl { margin: 0; }
+.details-card dt {
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+}
+.details-card dd {
+  margin: 4px 0 22px;
+  font-size: 1.05rem;
+  line-height: 1.45;
+}
+.details-card dd small { display: block; opacity: 0.85; font-size: 0.8rem; }
+.edit-link {
+  margin-top: auto;
+  align-self: flex-start;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.edit-link:hover { background: rgba(255, 255, 255, 0.3); }
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.sample-banner {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #f4efe8;
+  color: var(--label-brown);
+  font-size: 0.85rem;
+  border: 1px dashed var(--card-tan);
+}
+
+.panel {
+  border-radius: var(--radius-panel);
+  padding: 18px 20px 20px;
+  min-height: 220px;
+  color: #fff;
+}
+.panel h2 {
+  margin: 0 0 14px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.panel-cheapest { background: var(--panel-cheapest); }
+.panel-time     { background: var(--panel-time); }
+.panel-other    { background: var(--panel-other); }
+
+.panel-body .status { margin: 0; font-size: 0.95rem; opacity: 0.95; }
+.panel-body .status.error { color: #fff; background: rgba(138, 28, 28, 0.55); padding: 10px 12px; border-radius: 8px; }
+
+.flight-list { display: flex; flex-direction: column; gap: 12px; }
+
+/* one flight option (outbound + return) */
+/* I decided to do all trips round trips since we have a RETURN date for
+all users. In order for this return date to be utilized properly, we needed every
+date shown to be a round trip. If we remove the return date, then we can make all
+trips shown ONE-WAY ONLY */
+.flight {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 24px;
+  align-items: center;
+}
+.flight-airline {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
+.badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+.badge.ok   { background: #dcefe3; color: var(--ok); }
+.badge.over { background: #f6dede; color: var(--error); }
+
+.legs { display: flex; flex-direction: column; gap: 8px; }
+.leg {
+  display: grid;
+  grid-template-columns: 70px auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.95rem;
+}
+.leg-dir { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+.leg-times { font-weight: 600; white-space: nowrap; }
+.leg-times sup { font-size: 0.65rem; color: var(--muted); font-weight: 500; }
+.leg-route { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.leg-meta { color: var(--muted); white-space: nowrap; font-size: 0.88rem; }
+
+.price { text-align: right; }
+.price-total { font-size: 1.5rem; font-weight: 700; }
+.price-break { font-size: 0.78rem; color: var(--muted); }
+
+/* some responsive UI additions :p can ignore these */
+@media (max-width: 860px) {
+  .search-page { padding: 40px 14px 48px; }
+  .search-card { padding: 32px 22px 36px; border-radius: 24px; }
+  .search-grid { grid-template-columns: 1fr; }
+  .field-depart, .swap-wrap, .field-arrive, .field-dates,
+  .field-budget, .field-luggage { grid-column: 1; }
+  .swap-wrap { padding-top: 0; margin: -14px 0; }
+  .pair { gap: 10px; }
+  input[type="date"] { padding: 0 10px; font-size: 0.92rem; }
+  .swap-btn { height: 44px; transform: rotate(90deg); }
+  .swap-btn:active { transform: rotate(90deg) scaleX(-1); }
+
+  .results-page { grid-template-columns: 1fr; padding: 20px 14px 36px; }
+  .details-card { position: static; min-height: 0; }
+  .flight { grid-template-columns: 1fr; }
+  .price { text-align: left; }
+  .leg { grid-template-columns: 1fr; gap: 2px; }
+}
