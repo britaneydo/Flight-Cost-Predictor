@@ -1,7 +1,12 @@
 /* library of all colors, radii, and fonts used throughout frontend. 
-feel free to add other colors/styles, as long as it is added and lebeled properly. */
+feel free to add other colors/styles, as long as it is added and labeled properly. */
+
+/* sorry for the horrendous grammar on the comments guys im just trying to comment as quickly as possible in order
+to continue on with the rest of the project. if there are any questions pls just message me; i know this is a lot to
+fully comprehend! -britaney (catmillk) */
 
 :root {
+  /* shortcut of all names for hex codes. used to make code easier to read + write without memorizing codes */
   --header-bg: #b8ccdd;
   --card-tan: #c2ad96;
   --label-brown: #54473a;
@@ -16,22 +21,31 @@ feel free to add other colors/styles, as long as it is added and lebeled properl
   --error: #8a1c1c;
   --ok: #1f5f3a;
 
+  /* shortcut for all border radius. this rounds each corner of squares/rectangles */
   --radius-card: 36px;
   --radius-panel: 16px;
   --radius-input: 10px;
   --input-h: 56px;
 
+  /* font stacks! goes in this order: Inter -> whatever the system's UI font is -> if user is on mac, use iOS font
+  -> if user is on windows, use window's font -> sans-serif is always a safe bet on any pc */
+  /* this line of backup is here in case the user does not have a specific font */
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* same concept here, except with a diff font. Marcellus -> TNR -> serif (which is the safest one) */
   --font-logo: "Marcellus", "Times New Roman", serif;
 }
 
-/* padding formatting */
+/* padding formatting, essentially makes it so that padding and borders dont overflow outside of a specified range */
 *,
 *::before,
 *::after { box-sizing: border-box; }
 
+/* removes border around any bodies of design. by default, browsers have padding around their bodies */
 html, body { margin: 0; }
 
+/* formatting for the body. just tells us which fonts to use, bg color, and what color the text will be. 
+4th line removed jagged edges on any curves. if you zoom into the letter j for example, its curve is smooth
+instead of being able to see each pixel. */
 body {
   font-family: var(--font-body);
   color: var(--text);
@@ -39,12 +53,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* header format */
+/* header format, define bg color, the alignment of text, and padding for styling */
 .site-header {
   background: var(--header-bg);
   text-align: center;
   padding: 28px 16px 26px;
 }
+/* OPTIFLY title formatting. define font, font size that is dynamic (changes with window resizing), letter spacing
+for each letter in OPTIFLY, color of font, removal of underlining, and realigns the line height to more easily
+center the title (line height adjusted to align with font size/height). */
 .logo {
   font-family: var(--font-logo);
   font-size: clamp(2.25rem, 4vw, 3rem);
@@ -53,18 +70,26 @@ body {
   text-decoration: none;
   line-height: 1;
 }
+/* "Flight price optimization you can trust" formatting. Sets up the font + pushes down the tagline to make space
+for OPTIFLY title */
 .tagline {
   margin: 14px 0 0;
   font-size: 1rem;
 }
 
-/* search formatting */
+/* search page formatting. basically the white bg. padding is to center the area where we want to input info.
+display: flex turns the page into a flex container, and aligns all items inside of it; justify-content to center
+makes it so that the items inside the container are centered. this is why the brown seach area is in the center*/
 .search-page {
   padding: 96px 24px 80px;
   display: flex;
   justify-content: center;
 }
 
+/* sets the max width of the brown search card to 1000 pixels. 100% width just means to fill up the entire space
+(as in the search page AFTER padding it). the max width is mostly for hugggeeee screens since a huge brown box
+in the middle kinda looks tacky (imo). bg color is also set, as well as the rounded border edges of the brown box.
+padding is set so that all children inside the brown box arent all the way up the the box's borders. */
 .search-card {
   width: 100%;
   max-width: 1000px;
@@ -73,20 +98,41 @@ body {
   padding: 52px 56px 64px;
 }
 
-/* search area formatting (gridded to align entry boxes and labels) */
+/* search area formatting (gridded to align entry boxes and labels). this is confusing to understand so I will label
+each line. */
 .search-grid {
+
+  /* turns entire .search-grid into a gridded area (this is used when you want to insert a bunch of info and align
+  it as well */
   display: grid;
+  /* minmax(0, 1fr) is for "depart," 1 share of space; 64px is reserved for the arrows in the middle; minmax(0, 1fr)
+  is for  "arrive," also allocated 1 share of space; minmax(0, 1.55fr) is reserved for date since we want to add more
+  space to enter the date. this are is allocated 1.55 share of space. essentially this entire row is divided into a
+  certain number of pixels and each part gets a certain share of space. date has the largest share of space in this
+  scenario. the minmax format is for worst case scenarios if the user is on a super narrow screen. minmax(0, 1.55fr)
+  would then mean: at least 0 share of space, at most 1.55 share of space. */
   grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr) minmax(0, 1.55fr);
+  /* space between each col and row */
   column-gap: 16px;
   row-gap: 22px;
+  /* this is for alignment. also lets each item keep its natural height as well as aign to the TOP of their row. there
+  is a pretty good resource for this here: https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
   align-items: start;
 }
+/* basically tells where each item should go. for example: .field-depart  { grid-column: 1; } means this item needs
+to go in column 1. .field-budget  { grid-column: 1 / 3; } means START at col 1 and end at col 3. this means budget
+will span col 1 and 2. this is implemented bc the line for budget and luggage are longer than others. */
+
+/* for extra context: rows are never defined since the browser will fill in the rows in order. only columns are "defined"
+in these scenarios. */
 .field-depart  { grid-column: 1; }
 .swap-wrap     { grid-column: 2; }
 .field-arrive  { grid-column: 3; }
 .field-dates   { grid-column: 4; }
 .field-budget  { grid-column: 1 / 3; }
 .field-luggage { grid-column: 3 / 5; }
+
+/* we have 2 entry areas for luggage. each one will have a max width of 360. */
 .field-luggage .pair { max-width: 360px; }
 
 .field {
