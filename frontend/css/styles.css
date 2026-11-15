@@ -40,11 +40,11 @@ fully comprehend! -britaney (catmillk) */
 *::before,
 *::after { box-sizing: border-box; }
 
-/* removes border around any bodies of design. by default, browsers have padding around their bodies */
+/* removes border around any bodies of design. by default, browsers have margins around their bodies */
 html, body { margin: 0; }
 
 /* formatting for the body. just tells us which fonts to use, bg color, and what color the text will be. 
-4th line removed jagged edges on any curves. if you zoom into the letter j for example, its curve is smooth
+4th line removes jagged edges on any curves. if you zoom into the letter j for example, its curve is smooth
 instead of being able to see each pixel. */
 body {
   font-family: var(--font-body);
@@ -135,6 +135,17 @@ in these scenarios. */
 /* we have 2 entry areas for luggage. each one will have a max width of 360. */
 .field-luggage .pair { max-width: 360px; }
 
+/* .field label is for multiple descriptions/entries in the HTML file. 
+display: flex makes sure we can edit the items inside the field area,
+flex-direction: column makes sure the description is ABOVE the entry area instead of 
+on the right of it (which is the default). 
+min-width: 0 allows the ENTRY area to shrink below what default allows us to shrink it to.
+^ in regards to min-width, without this rule, all text entry boxes would not shrink
+below a certain length (im not sure what the len is, i just know this happens), and if the user
+decided to make the page more narrow, the text boxes would look weird. */
+
+/* fieldset.field means that the fieldset tag also has a class field (this is bc there is no
+space between '.' and 'field'. { border: 0; margin: 0; padding: 0; } just removes all padding/margins/borders (basically removes all default styling). */
 .field {
   display: flex;
   flex-direction: column;
@@ -142,55 +153,89 @@ in these scenarios. */
 }
 fieldset.field { border: 0; margin: 0; padding: 0; }
 
+/* any <label> inside a field.
+i used this for singular entries in our frontend. check "Depart" in our HTML file to see an example of its use! */
 .field label,
+/* any <legend> inside a field.
+i used this for multiple entries inside our frontend. check "Dates" in our HTML file to see an example of its use!
+everything within the brackets is styling :> all styling applies to BOTH label and legend */
 .field legend {
   color: var(--label-brown);
   font-size: 0.95rem;
   font-weight: 500;
+  /* quick note, 0 padding top and bottom, 4 on left and right. basic syntax help. */
   padding: 0 4px;
   margin-bottom: 10px;
 }
 
+/* display: grid makes it so that the entries/items appear SIDE BY SIDE (what we want for the dates entries for example */
 .pair {
   display: grid;
+  /* creates 2 cols with 1 portion in each to make sure both inputs get equal widths. the 0 in minmax makes sure we can shrink the item
+  down as much as we want, without worrying about the text size. */
+  /* note for me: auto can work, but not used because auto (instead of 0) will make it so that the text box will shrink to the SIZE OF THE TEXT
+  rather than ever shrinking fully down. */
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  /* gap between inputs */
   gap: 16px;
 }
+/* for luggage specifically i changed the gap to 12px */
+/* extra note! css uses more SPECIFIC rules. this is why 12px will be used rather than 16px for field-luggage. (.field-luggage .pair) has 2 classes, so it’s more specific and wins. */
 .field-luggage .pair { gap: 12px; }
 
+/* styling for every text box/dropdown */
+/* ive just gone ahead and commented whatever isn't straighforward instead */
 input,
 select {
+  /* use font from page (inter) */
   font: inherit;
   font-size: 1rem;
   color: var(--text);
   height: var(--input-h);
   width: 100%;
+  /* padding is 0 top and bottom, 16 left and right */
   padding: 0 16px;
+  /* removes a border line around entry. we need a border in general to highlight it in red if there are errors*/
   border: 2px solid transparent;
+  /* corner rounding */
   border-radius: var(--radius-input);
+  /* entry boxes turn white */
   background: #fff;
+  /* removes default blue outline */
   outline: none;
+  /* ANIMATE clicking on the entry box for design purposes. this is totally optional, but makes the UI look more "flowy" */
   transition: border-color 0.15s, box-shadow 0.15s;
 }
+/* makes the placeholder text grey. 
+:: means pseudo-element*/
 input::placeholder { color: #6e6e6e; }
+/* : means class, so input:focus means the input is being focused on. focus is the STATE. */
 input:focus,
 select:focus {
   border-color: var(--btn-brown);
+  /* adds a ring shadow around the box, kinda like a glow! */
   box-shadow: 0 0 0 3px rgba(79, 67, 52, 0.18);
 }
+/* this is for error handling. lets say the user forgets to fill in an entry, then this code will pass to JS and then turn the border red if 
+these checks pass (meaning that there is an error) */
 input[aria-invalid="true"],
 select[aria-invalid="true"],
 .money-input:has(input[aria-invalid="true"]) {
   border-color: var(--error);
 }
 
+/* # targets id instead of class; all id's are unique, unlike classes (which use the . prefix). only one #from and one #to from each page.
+from and to are specifically for location choosing. from LAX to SJC for example. */
 #from, #to { text-transform: uppercase; font-size: 1.15rem; }
 /* custom arrow dropdown thing */
+/* remove the default arrow from the from/to dropdowns. !important makes sure the arrow NEVER comes back. */
 #from::-webkit-calendar-picker-indicator,
 #to::-webkit-calendar-picker-indicator { display: none !important; }
+/* makes sure the placeholder text is no longer forced to be capitalized (auto capitalized bc it is inherited from (text-transform: uppercase) above.
+also makes font 1rem */
 #from::placeholder, #to::placeholder { text-transform: none; font-size: 1rem; }
 
-/* default entry labels */
+/* makes sure there is valid data in entry areas. while the selection is not selected, the text is grey. */
 input[type="date"]:invalid,
 select:invalid { color: #6e6e6e; }
 select {
@@ -200,7 +245,8 @@ select {
   padding: 0 14px;
 }
 
-/* $ prefix inside budget entry area */
+/* $ prefix inside budget entry area. similar formatting as before! */
+/* inital wrapper. draws the entry box */
 .money-input {
   display: flex;
   align-items: center;
@@ -209,23 +255,28 @@ select {
   border: 2px solid transparent;
   padding-left: 16px;
 }
+/* when the entry is focused, border and glow appear to show it is selected */
 .money-input:focus-within {
   border-color: var(--btn-brown);
   box-shadow: 0 0 0 3px rgba(79, 67, 52, 0.18);
 }
+/* makes sure the $ is same color as rest of font */
 .money-input span { color: var(--text); }
+/* removes second border created by inner input area. if this section was removed, there would be a box within a box */
 .money-input input {
   border: 0;
   box-shadow: none !important;
   padding-left: 4px;
+  /* 4 comes from the 2 + 2px border from wrapper above */
   height: calc(var(--input-h) - 4px);
 }
-/* hide number spinners */
+
+/* hide number spinners/up-down arrows, mostly formatting. the spinner appears bc the input has type = "number" */
 .money-input input::-webkit-outer-spin-button,
 .money-input input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 .money-input input[type="number"] { -moz-appearance: textfield; }
 
-/* city name */
+/* city name, shows under each airport name (LAX will have Los Angeles) */
 .hint {
   min-height: 1.1em;
   margin-top: 5px;
@@ -233,15 +284,16 @@ select {
   font-size: 0.75rem;
   color: var(--label-brown);
 }
-/* error if needed */
-.hint.error { color: var(--error); font-weight: 500; }
+/* error if needed
+.hint.error { color: var(--error); font-weight: 500; } */
 
-/* swap arrows */
+/* swap arrows formatting */
 .swap-wrap {
   height: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  /* line up with inputs instead of labels. dynamic bc i might change font sizes consistently */
   padding-top: calc(0.95rem * 1.2 + 10px);
 }
 .swap-btn {
@@ -249,28 +301,35 @@ select {
   height: var(--input-h);
   border: 0;
   background: transparent;
+  /* shows hand pointer on hover to show it is clickable */
   cursor: pointer;
   border-radius: 10px;
   color: var(--label-brown);
+  /* animation for flip!! */
   transition: background 0.15s, transform 0.25s;
 }
+/* upon hover, add opaque bg */
 .swap-btn:hover { background: rgba(255, 255, 255, 0.25); }
+/* once pressed, the arrows flip/mirror each other */
 .swap-btn:active { transform: scaleX(-1); }
-.swap-btn:focus-visible { outline: 2px solid var(--btn-brown); }
+/* svg file is handled diff than png. can edit the lines within the svg */
 .swap-btn svg {
   width: 44px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.8;
+  /* only non straightforward part is this part; this just means all the lines get rounded at the ends, and their corners get rounded as well */
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-/* search button */
+/* search button, usual formatting */
 .search-btn {
   margin-top: 34px;
+  /* flex, but makes it so that the button is as wide as the context inside of it */
   display: inline-flex;
   align-items: center;
+  /* space between icon and text */
   gap: 10px;
   height: 52px;
   padding: 0 26px 0 22px;
@@ -283,9 +342,10 @@ select {
   cursor: pointer;
   transition: background 0.15s, transform 0.1s;
 }
+/* similar formatting to swap arrows above!! */
 .search-btn:hover { background: var(--btn-brown-hover); }
 .search-btn:active { transform: translateY(1px); }
-.search-btn:focus-visible { outline: 3px solid #fff; outline-offset: 2px; }
+/* svg file edits. specifically the magnifying glass */
 .search-btn svg {
   width: 20px;
   height: 20px;
@@ -298,30 +358,39 @@ select {
 /* results formatting */
 .results-page {
   display: grid;
+  /* makes 2 cols on the page: one for travel details, and the other one has the rest of the space. */
   grid-template-columns: 260px minmax(0, 1fr);
+  /* space between cols */
   gap: 26px;
   padding: 38px 32px 48px;
   max-width: 1400px;
+  /* margin: 0 auto means 0 top and bottom and auto left and right. auto splits the leftover space evenly on both sides, which centers the boxes. */
   margin: 0 auto;
+  /* makes sure the boxes dont grow based on other boxes. since the left sidebox (bar?) is sticky, this is important to make sure it doesn't
+  become super long. */
   align-items: start;
 }
 
+/* the left long rectangle */
 .details-card {
   background: var(--sidebar);
   color: #fff;
   border-radius: 22px;
   padding: 20px 20px 28px;
+  /* makes sure its always on the user's screen! stops scrolling once it reaches 20px away from top of window */
   position: sticky;
   top: 20px;
   min-height: 560px;
   display: flex;
   flex-direction: column;
 }
+/* title of details card formatting */
 .details-card h2 {
   margin: 0 0 24px;
   font-size: 1.3rem;
   font-weight: 700;
 }
+/* dl, dt, dd are HTML tags. <dl></dl> for example. this is formatting so you can use this css style inside your HTML tags */
 .details-card dl { margin: 0; }
 .details-card dt {
   font-weight: 700;
@@ -335,20 +404,32 @@ select {
   font-size: 1.05rem;
   line-height: 1.45;
 }
-.details-card dd small { display: block; opacity: 0.85; font-size: 0.8rem; }
+/* for future formatting, ignore for now. subtitle formatting for less important details on results page. */
+/* .details-card dd small { display: block; opacity: 0.85; font-size: 0.8rem; } */
+
+/* "edit search" button at the bottom of the left sidebar. margin-top: auto helps alignment here. since .details-card is a
+flex column, an auto margin on top eats up ALL the leftover space and pushes the button all the way down to the bottom
+of the card. align-self: flex-start makes it so the button doesnt stretch across the whole card (flex column items
+stretch by default), it just stays as wide as the text inside of it. */
 .edit-link {
   margin-top: auto;
   align-self: flex-start;
   color: #fff;
+  /* white bg but only 18% opaque, so it kinda looks like a lighter version of the sidebar color */
   background: rgba(255, 255, 255, 0.18);
   padding: 8px 14px;
   border-radius: 10px;
+  /* this is an <a> tag so we remove the underline that links get by default */
   text-decoration: none;
   font-weight: 500;
   font-size: 0.9rem;
 }
+/* bg gets a little less see through on hover so the user knows its clickable */
 .edit-link:hover { background: rgba(255, 255, 255, 0.3); }
 
+/* right side of the results page (basically everything that isnt the sidebar). stacks the banner and all 3 panels on top of
+eachother with 16px of space between each one. min-width: 0 is the same concept as in .field above! without it, a super
+long text could stretch this column out. */
 .results {
   display: flex;
   flex-direction: column;
@@ -356,6 +437,8 @@ select {
   min-width: 0;
 }
 
+/* the little banner at the top of the results letting the user know the flights shown are sample data. off white bg +
+dashed tan border so it looks more like a "note" than an actual result. can remove this once we figure out how to put all our data into the boxes. */
 .sample-banner {
   margin: 0;
   padding: 10px 14px;
@@ -366,24 +449,32 @@ select {
   border: 1px dashed var(--card-tan);
 }
 
+/* the 3 boxes on the right (cheapest, time, other). this is the shared styling for all 3, the colors
+are set seperately right below. min-height is there so the boxes dont look tiny/squished while they're still empty */
 .panel {
   border-radius: var(--radius-panel);
   padding: 18px 20px 20px;
   min-height: 220px;
   color: #fff;
 }
+/* title of each panel */
 .panel h2 {
   margin: 0 0 14px;
   font-size: 1.4rem;
   font-weight: 700;
 }
+/* each panel gets its own shade of blue/grey from the library at the very top */
 .panel-cheapest { background: var(--panel-cheapest); }
 .panel-time     { background: var(--panel-time); }
 .panel-other    { background: var(--panel-other); }
 
+/* status messages inside each panel (loading, errors, etc). opacity 0.95 just fades the text a tiny bit */
 .panel-body .status { margin: 0; font-size: 0.95rem; opacity: 0.95; }
+/* same thing but for errors. no space between .status and .error means the element has BOTH classes (same idea as
+fieldset.field above). text stays white but the bg turns into a see through version of our --error red from the 0.55 (opacity change). */
 .panel-body .status.error { color: #fff; background: rgba(138, 28, 28, 0.55); padding: 10px 12px; border-radius: 8px; }
 
+/* list of flights inside each panel, stacked with 12px between each flight */
 .flight-list { display: flex; flex-direction: column; gap: 12px; }
 
 /* one flight option (outbound + return) */
@@ -392,15 +483,22 @@ all users. In order for this return date to be utilized properly, we needed ever
 date shown to be a round trip. If we remove the return date, then we can make all
 trips shown ONE-WAY ONLY */
 .flight {
+  /* each flight is its own white card inside the colored panel. 0.92 so a tiny bit of the panel color peeks through */
   background: rgba(255, 255, 255, 0.92);
   color: var(--text);
   border-radius: 12px;
   padding: 14px 18px;
   display: grid;
+   /* 2 cols: left one takes up all the space it can (flight times/route), right one is auto, meaning its only as wide
+  as whatever is inside of it (the price) */
   grid-template-columns: minmax(0, 1fr) auto;
+   /* 8px between rows, 24px between cols */
   gap: 8px 24px;
   align-items: center;
 }
+
+/* airline name row. grid-column: 1 / -1 means start at col 1 and end at the LAST col, no matter how many cols there
+are. so the airline name spans the whole top of the card. flex + gap so the name and badge sit next to eachother */
 .flight-airline {
   grid-column: 1 / -1;
   display: flex;
@@ -408,17 +506,12 @@ trips shown ONE-WAY ONLY */
   gap: 10px;
   font-weight: 600;
 }
-.badge {
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 3px 8px;
-  border-radius: 999px;
-  letter-spacing: 0.02em;
-}
-.badge.ok   { background: #dcefe3; color: var(--ok); }
-.badge.over { background: #f6dede; color: var(--error); }
 
+/* holds both legs of the trip (outbound + return), stacked on top of eachother. this is for future use once we get the flights
+set up. might not even use this. */
 .legs { display: flex; flex-direction: column; gap: 8px; }
+/* one leg = one direction of the trip. 4 cols: 70px for the direction label, auto for the times, 1fr for the route
+(gets all the leftover space), and auto for the extra info on the end */
 .leg {
   display: grid;
   grid-template-columns: 70px auto 1fr auto;
@@ -426,7 +519,9 @@ trips shown ONE-WAY ONLY */
   gap: 14px;
   font-size: 0.95rem;
 }
-.leg-dir { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+
+/* i am not fully sure yet about adding these parts. this all depends on how we want to format our flight times. */
+/* .leg-dir { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
 .leg-times { font-weight: 600; white-space: nowrap; }
 .leg-times sup { font-size: 0.65rem; color: var(--muted); font-weight: 500; }
 .leg-route { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -434,24 +529,4 @@ trips shown ONE-WAY ONLY */
 
 .price { text-align: right; }
 .price-total { font-size: 1.5rem; font-weight: 700; }
-.price-break { font-size: 0.78rem; color: var(--muted); }
-
-/* some responsive UI additions :p can ignore these */
-@media (max-width: 860px) {
-  .search-page { padding: 40px 14px 48px; }
-  .search-card { padding: 32px 22px 36px; border-radius: 24px; }
-  .search-grid { grid-template-columns: 1fr; }
-  .field-depart, .swap-wrap, .field-arrive, .field-dates,
-  .field-budget, .field-luggage { grid-column: 1; }
-  .swap-wrap { padding-top: 0; margin: -14px 0; }
-  .pair { gap: 10px; }
-  input[type="date"] { padding: 0 10px; font-size: 0.92rem; }
-  .swap-btn { height: 44px; transform: rotate(90deg); }
-  .swap-btn:active { transform: rotate(90deg) scaleX(-1); }
-
-  .results-page { grid-template-columns: 1fr; padding: 20px 14px 36px; }
-  .details-card { position: static; min-height: 0; }
-  .flight { grid-template-columns: 1fr; }
-  .price { text-align: left; }
-  .leg { grid-template-columns: 1fr; gap: 2px; }
-}
+.price-break { font-size: 0.78rem; color: var(--muted); } */
