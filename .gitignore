@@ -1,0 +1,7 @@
+# makes sure we dont commit the 30gb csv file.
+
+**/data/raw/
+.DS_Store
+__pycache__/
+.ipynb_checkpoints/
+.env
