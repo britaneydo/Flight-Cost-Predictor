@@ -1,3 +1,4 @@
+import pandas as pd
 from datetime import date
 
 def validate_destination(destination):
@@ -37,5 +38,21 @@ def booking_window(departure_date):
         return "22-45"
     elif days_ahead >= 46 and days_ahead <= 60:
         return "46-60"
+    else:
+        return None
+
+# Finds the available airlines for destination
+def get_airline(destination):
+    df = pd.read_parquet("data/lax_flights.parquet")
+    flights = df[df["destinationAirport"] == destination]
+    airlines = flights["segmentsAirlineCode"].str[:2]
+    return airlines.unique().tolist()
+
+# User input processing for destination and departure date
+def process_user_input(destination, departure_date):
+    if validate_destination(destination) and validate_date(departure_date):
+        day = get_day(departure_date)
+        window = booking_window(departure_date)
+        return destination, day, window
     else:
         return None
