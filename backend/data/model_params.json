@@ -1,0 +1,674 @@
+{
+  "features": [
+    "destinationAirport",
+    "day",
+    "time",
+    "window",
+    "stops",
+    "airline"
+  ],
+  "priors": {
+    "True": 0.3310573200552365,
+    "False": 0.6689426799447635
+  },
+  "cond_probs": {
+    "True": {
+      "destinationAirport": {
+        "ATL": 0.3342574316870173,
+        "BOS": 0.3365524176904546,
+        "LGA": 0.3291901506225281
+      },
+      "day": {
+        "Sun": 0.09506648515022387,
+        "Mon": 0.14869438744954888,
+        "Tue": 0.19904418684586161,
+        "Wed": 0.17054390391436106,
+        "Thu": 0.1076040279839517,
+        "Fri": 0.12760585915865028,
+        "Sat": 0.1514411494974026
+      },
+      "time": {
+        "Evening": 0.34717029276456507,
+        "Afternoon": 0.21319654476273386,
+        "Morning": 0.43963316247270107
+      },
+      "window": {
+        "0-7": 0.09265035212747434,
+        "8-21": 0.27522979844979856,
+        "22-45": 0.47852712852502716,
+        "46+": 0.1535927208976999
+      },
+      "stops": {
+        "1+": 0.8783340387911754,
+        "Nonstop": 0.12166596120882453
+      },
+      "airline": {
+        "F9": 0.013918407780979827,
+        "NK": 0.15879412824207492,
+        "B6": 0.13096481748318925,
+        "UA": 0.17695875360230548,
+        "AA": 0.35079400816522577,
+        "DL": 0.1497943683957733,
+        "AS": 0.01572856628242075,
+        "SY": 0.0030469500480307396
+      }
+    },
+    "False": {
+      "destinationAirport": {
+        "ATL": 0.331982130547434,
+        "BOS": 0.33794777627231454,
+        "LGA": 0.3300700931802515
+      },
+      "day": {
+        "Sun": 0.16357676205530777,
+        "Mon": 0.14328575291261703,
+        "Tue": 0.11877624029499069,
+        "Wed": 0.1325415313487029,
+        "Thu": 0.16325511880743895,
+        "Fri": 0.1501323714244116,
+        "Sat": 0.12843222315653108
+      },
+      "time": {
+        "Evening": 0.3400113504005325,
+        "Afternoon": 0.1801831514892201,
+        "Morning": 0.4798054981102475
+      },
+      "window": {
+        "0-7": 0.15924347556731533,
+        "8-21": 0.27070462313058374,
+        "22-45": 0.3998784735505408,
+        "46+": 0.1701734277515601
+      },
+      "stops": {
+        "1+": 0.8319314934478873,
+        "Nonstop": 0.16806850655211272
+      },
+      "airline": {
+        "F9": 0.0034251637742318637,
+        "NK": 0.036491253612912666,
+        "B6": 0.09812711658556261,
+        "UA": 0.2560389774872178,
+        "AA": 0.2807861757389061,
+        "DL": 0.24144544734005688,
+        "AS": 0.07766155875778945,
+        "SY": 0.00602430670332258
+      }
+    }
+  },
+  "options": [
+    {
+      "destinationAirport": "ATL",
+      "airline": "AA",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 357.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "AA",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 417.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "AA",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 357.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "AA",
+      "stops": "Nonstop",
+      "time": "Morning",
+      "median_fare": 371.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "AS",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 400.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "AS",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 490.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "AS",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 433.21
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "AS",
+      "stops": "Nonstop",
+      "time": "Morning",
+      "median_fare": 378.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "B6",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 302.2
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "B6",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 275.61
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "B6",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 303.62
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "DL",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 387.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "DL",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 467.2
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "DL",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 507.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "DL",
+      "stops": "Nonstop",
+      "time": "Afternoon",
+      "median_fare": 418.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "DL",
+      "stops": "Nonstop",
+      "time": "Evening",
+      "median_fare": 428.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "DL",
+      "stops": "Nonstop",
+      "time": "Morning",
+      "median_fare": 448.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "F9",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 152.99
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "F9",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 217.99
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "F9",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 223.59
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "F9",
+      "stops": "Nonstop",
+      "time": "Evening",
+      "median_fare": 163.98
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "NK",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 247.78
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "NK",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 321.07
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "NK",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 255.58
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "NK",
+      "stops": "Nonstop",
+      "time": "Afternoon",
+      "median_fare": 218.59
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "NK",
+      "stops": "Nonstop",
+      "time": "Evening",
+      "median_fare": 148.59
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "NK",
+      "stops": "Nonstop",
+      "time": "Morning",
+      "median_fare": 258.59
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "UA",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 448.6
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "UA",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 468.9
+    },
+    {
+      "destinationAirport": "ATL",
+      "airline": "UA",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 448.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "AA",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 373.4
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "AA",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 328.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "AA",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 378.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "AA",
+      "stops": "Nonstop",
+      "time": "Afternoon",
+      "median_fare": 475.35
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "AA",
+      "stops": "Nonstop",
+      "time": "Evening",
+      "median_fare": 409.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "AA",
+      "stops": "Nonstop",
+      "time": "Morning",
+      "median_fare": 518.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "AS",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 548.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "AS",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 521.2
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "AS",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 516.61
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "B6",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 300.11
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "B6",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 317.21
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "B6",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 342.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "B6",
+      "stops": "Nonstop",
+      "time": "Afternoon",
+      "median_fare": 381.61
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "B6",
+      "stops": "Nonstop",
+      "time": "Evening",
+      "median_fare": 359.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "B6",
+      "stops": "Nonstop",
+      "time": "Morning",
+      "median_fare": 391.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "DL",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 377.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "DL",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 427.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "DL",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 387.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "DL",
+      "stops": "Nonstop",
+      "time": "Afternoon",
+      "median_fare": 408.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "DL",
+      "stops": "Nonstop",
+      "time": "Evening",
+      "median_fare": 383.61
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "DL",
+      "stops": "Nonstop",
+      "time": "Morning",
+      "median_fare": 428.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "F9",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 103.99
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "NK",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 322.58
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "NK",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 335.58
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "NK",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 327.78
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "SY",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 394.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "SY",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 400.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "UA",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 411.69
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "UA",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 416.1
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "UA",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 389.61
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "UA",
+      "stops": "Nonstop",
+      "time": "Evening",
+      "median_fare": 378.6
+    },
+    {
+      "destinationAirport": "BOS",
+      "airline": "UA",
+      "stops": "Nonstop",
+      "time": "Morning",
+      "median_fare": 468.61
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "AA",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 378.6
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "AA",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 367.6
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "AA",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 367.6
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "AS",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 491.7
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "AS",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 600.7
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "AS",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 551.6
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "B6",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 330.56
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "B6",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 381.61
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "B6",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 408.61
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "DL",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 418.6
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "DL",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 487.6
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "DL",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 487.6
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "F9",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 334.21
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "NK",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 266.07
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "NK",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 269.58
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "NK",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 239.58
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "NK",
+      "stops": "Nonstop",
+      "time": "Morning",
+      "median_fare": 268.59
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "UA",
+      "stops": "1+",
+      "time": "Afternoon",
+      "median_fare": 408.6
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "UA",
+      "stops": "1+",
+      "time": "Evening",
+      "median_fare": 408.6
+    },
+    {
+      "destinationAirport": "LGA",
+      "airline": "UA",
+      "stops": "1+",
+      "time": "Morning",
+      "median_fare": 380.6
+    }
+  ]
+}
